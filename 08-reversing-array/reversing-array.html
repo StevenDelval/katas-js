@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="array">Votre tableau :</label>
+    <input id="array" name="array" type="text" placeholder="1,2,3,4,5,6">
+    <button id="reverseArray"> Lancer la fonction reverseArray </button>
+    <button id="reverseArrayInPlace"> Lancer la fonction reverseArrayInPlace </button>
+
+    <script>
+        const body = document.body;
+        let buttonReverseArray = document.getElementById("reverseArray");
+        let buttonReverseArrayInPlace = document.getElementById("reverseArrayInPlace");
+        let arrayInput = document.getElementById("array");
+        let array = [];
+        arrayInput.addEventListener('input', (e) => {
+            array = e.target.value.split(',');
+        });
+        function reverseArray(array) {
+            let reverse = [];
+            for (let i = array.length - 1; i >= 0; i--) {
+                reverse[array.length - 1 - i] = array[i];
+            }
+            return reverse;
+
+        }
+        function reverseArrayInPlace(array) {
+            let conteneur = 0;
+            for (let i = 0; i < array.length/2; i++) {
+
+                conteneur = array[i];
+                array[i] = array[array.length - 1 - i];
+                array[array.length - 1 - i] = conteneur;
+            }
+
+
+        }
+
+        let pFirst = document.createElement("p");
+        let pSecond = document.createElement("p");
+        buttonReverseArray.addEventListener('click', () => {
+            pFirst.innerText = `Le tableau [${array}] donne [${reverseArray(array)}] avec la fonction reverseArray  `;
+            body.appendChild(pFirst);
+            
+        });
+        buttonReverseArrayInPlace.addEventListener('click', () => {
+            reverseArrayInPlace(array);
+            pSecond.innerText = `Avec la fonction reverseArrayInPlace on obtien ${array}   `;
+            body.appendChild(pSecond);
+
+        });
+
+    </script>
+</body>
+
+</html>

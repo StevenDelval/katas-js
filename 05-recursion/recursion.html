@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="nombre">Votre nombre:</label>
+    <input id="nombre" name="nombre" type="number" placeholder="0">
+    <button> Lancer la fonction isEven </button>
+    <script>
+        const body = document.body;
+        let button = document.querySelector("button");
+        let nombreInput = document.getElementById("nombre");
+        let nombre = 0;
+        nombreInput.addEventListener('input', (e) => {
+            nombre = Number(e.target.value);
+        });
+        function isEven(nombre) {
+
+            let boolean = 0;
+            if (nombre >= 0) {
+
+                if (nombre >= 2) {
+                    boolean = isEven(nombre - 2);
+                    
+                }
+                if (nombre == 0) {
+                        return true;
+                    } else if (nombre == 1) {
+                        return false;
+                    }
+
+            } else {
+
+                if (nombre < 0) {
+                    boolean = isEven(nombre + 2);
+                }
+                if (nombre == 0) {
+                    return true;
+                } else if (nombre == 1) {
+                    return false;
+                }
+            }
+            return boolean;
+
+
+
+        }
+        let p = document.createElement("p");
+        button.addEventListener('click', () => {
+            if (isEven(nombre)) {
+                p.innerText = `Le nombre ${nombre} est pair `;
+            } else {
+                p.innerText = `Le nombre ${nombre} est impair `;
+            }
+
+            body.appendChild(p);
+        })
+
+    </script>
+</body>
+
+</html>

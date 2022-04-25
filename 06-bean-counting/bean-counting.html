@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="phrase">Votre texte :</label>
+    <input id="phrase" name="phrase" type="text" placeholder="Votre texte">
+    <label for="caractere">le caractère a compter :</label>
+    <input id="caractere" name="caractere" type="text" placeholder="a" minlength="1" maxlength="1">
+    <button> Lancer la fonction compter le caractère </button>
+
+    <script>
+        const body = document.body;
+        let button = document.querySelector("button");
+        let phraseInput = document.getElementById("phrase");
+        let caractereInput = document.getElementById("caractere");
+        let phrase = "";
+        let caractere = "";
+        phraseInput.addEventListener('input', (e) => {
+            phrase = e.target.value;
+        });
+        caractereInput.addEventListener('input', (e) => {
+            caractere = e.target.value;
+        });
+
+        function countChar(phrase, caractere){
+            let count =0
+            for (let char of phrase ){
+                if (char == caractere){
+                    count+=1
+                }
+            }
+            console.log(phrase)
+            return count
+        }
+        
+        button.addEventListener('click', () => {
+            let p = document.createElement("p");
+            p.innerText = `Il y a ${countChar(phrase, caractere)} fois le caractère "${caractere}" dans ${phrase} `;
+            body.appendChild(p);
+        })
+    </script>
+</body>
+
+</html>

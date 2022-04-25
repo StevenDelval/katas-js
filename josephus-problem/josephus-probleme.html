@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="prisonnier">Nombre de prisonnier :</label>
+    <input id="prisonnier" name="prisonnier" type="number" value="5">
+    <label for="kill">Deuxième :</label>
+    <input id="kill" name="kill" type="number" value="1" min="1">
+    <button> Lancer la fonction josephus </button>
+    <script>
+        const body = document.body;
+        let button = document.querySelector("button");
+        let prisonnierInput = document.getElementById("prisonnier");
+        let killInput = document.getElementById("kill");
+        let nombrePrisonnier = 5;
+        let kill = 1;
+        prisonnierInput.addEventListener('input', (e) => {
+            nombrePrisonnier = Number(e.target.value);
+        });
+        killInput.addEventListener('input', (e) => {
+            kill = Number(e.target.value);
+        });
+        function range(start, end) {
+            let array = [];
+            for (let i = start; i <= end; i++) {
+                array.push(i);
+            }
+
+            return array
+        }
+
+        function josephus(cerclePrisonnier, kill) {
+            let conteneur = 0;
+            if (cerclePrisonnier.length != 1) {
+                for (let i = 0; i < kill-1; i++) {
+                    for (let i = 0; i < cerclePrisonnier.length - 1; i++) {
+
+                        conteneur = cerclePrisonnier[i];
+                        cerclePrisonnier[i] = cerclePrisonnier[i + 1];
+                        cerclePrisonnier[i + 1] = conteneur;
+
+
+                    }
+                    console.log(cerclePrisonnier);
+
+                }
+                console.log(cerclePrisonnier[0])
+                cerclePrisonnier.shift()
+                console.log(cerclePrisonnier);
+               
+
+                josephus(cerclePrisonnier, kill)
+
+            }
+            return cerclePrisonnier;
+        }
+        let p = document.createElement("p");
+        button.addEventListener('click', () => {
+            let cerclePrisonnier = range(1, nombrePrisonnier);
+
+            p.innerText = `Le prisonnier n° ${josephus(cerclePrisonnier, kill)} sort vivant`
+            body.appendChild(p);
+        })
+    </script>
+</body>
+
+</html>

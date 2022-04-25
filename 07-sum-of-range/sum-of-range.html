@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="start">Début a :</label>
+    <input id="start" name="start" type="number" placeholder="0">
+    <label for="end">Fini a :</label>
+    <input id="end" name="end" type="number" placeholder="0">
+    <label for="step">Un pas de :</label>
+    <input id="step" name="step" type="number" placeholder="1">
+    <button id="range"> Lancer la fonction range </button>
+    <button id="sum"> Lancer la fonction sum </button>
+
+    <script>
+        const body = document.body;
+        let rangeButton = document.getElementById("range");
+        let sumButton = document.getElementById("sum");
+        let startInput = document.getElementById("start");
+        let endInput = document.getElementById("end");
+        let stepInput = document.getElementById("step");
+        let start = 0;
+        let end = 0;
+        let step = 1;
+        startInput.addEventListener('input', (e) => {
+            start = Number(e.target.value);
+        });
+        endInput.addEventListener('input', (e) => {
+            end = Number(e.target.value);
+        });
+        stepInput.addEventListener('input', (e) => {
+            if (Number(e.target.value) == 0) {
+                alert("Le pas doit être différent de 0. Si vous lancez la fonction step=1 ou la dernier valeur avant la saisi du 0. ");
+            } else {
+                step = Number(e.target.value);
+            }
+        });
+
+        function range(start, end, step) {
+            let array = [];
+            if (start < end && step > 0) {
+                for (let i = start; i <= end; i = i + step) {
+                    array.push(i);
+                }
+            }
+            if (start > end && step < 0) {
+                for (let i = start; i >= end; i = i + step) {
+                    array.push(i);
+                }
+            }
+            return array
+        }
+        function sum(array) {
+            let somme = 0;
+            for (let nombre of array) {
+                somme = somme + nombre;
+            }
+            return somme;
+        }
+        let tableau = [];
+        let prange = document.createElement("p");
+        rangeButton.addEventListener('click', () => {
+            tableau = range(start, end, step);
+            prange.innerText = range(start, end, step);
+            body.appendChild(prange);
+        })
+        let psum = document.createElement("p");
+        sumButton.addEventListener('click', () => {
+            
+            psum.innerText = `La somme des élèments du tableau ${tableau} est ${sum(tableau)} `;
+            body.appendChild(psum);
+        })
+    </script>
+</body>
+
+</html>

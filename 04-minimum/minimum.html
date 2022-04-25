@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="nombreun">Premier nombre :</label>
+    <input id="nombreun" name="nombreun" type="number" placeholder="10">
+    <label for="nombredeux">Deuxième :</label>
+    <input id="nombredeux" name="nombredeux" type="number" placeholder="0">
+    <button> Lancer la fonction minimum </button>
+
+    <script>
+        const body = document.body;
+        let button = document.querySelector("button");
+        let nombreUnInput = document.getElementById("nombreun");
+        let nombreDeuxInput = document.getElementById("nombredeux");
+        let nombreUn = 10;
+        let nombreDeux = 0;
+        nombreUnInput.addEventListener('input', (e) => {
+            nombreUn = Number(e.target.value);
+        });
+        nombreDeuxInput.addEventListener('input', (e) => {
+            nombreDeux = Number(e.target.value);
+        });
+        function minimum(a, b) {
+            if (a > b) {
+                
+                return b;
+            } else { 
+                return a; 
+            }
+
+        }
+        let p = document.createElement("p");
+        button.addEventListener('click', () => {
+            p.innerText = `Le minimum entre ${nombreUn} et ${nombreDeux} est ${minimum(nombreUn,nombreDeux)} `;
+            body.appendChild(p);
+        })
+    </script>
+
+</body>
+
+</html>

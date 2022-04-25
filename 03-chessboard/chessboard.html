@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <label for="width">width :</label>
+    <input id="width" name="width" type="number" value="8">
+    <label for="height">height :</label>
+    <input id="height" name="height" type="number" value="8">
+    <button class="create"> Crée la table </button>
+    <button class="refresh">Refresh la page</button>
+
+    <script>
+        const body = document.body;
+        let buttoncreate = document.querySelector("button.create");
+        let buttonrefresh = document.querySelector("button.refresh");
+        let widthinput = document.getElementById("width");
+        let heightinput = document.getElementById("height");
+        let width = 8;
+        let height = 8;
+        widthinput.addEventListener('input', (e) => {
+            width = e.target.value;
+        });
+        heightinput.addEventListener('input', (e) => {
+            height = e.target.value;
+        });
+        buttoncreate.addEventListener('click', () => {
+            for (let ligne = 0; ligne < height; ligne++) {
+                let p = document.createElement("p");
+                let caracteres = "";
+
+                for (let colonne = 0; colonne < width; colonne++) {
+                    if (ligne % 2 == 0) {
+                        if (colonne % 2 == 0) {
+                            caracteres = caracteres + "_";
+                        } else {
+                            caracteres = caracteres + "#";
+                        }
+                    } else {
+                        if (colonne % 2 !== 0) {
+                            caracteres = caracteres + "_";
+                        } else {
+                            caracteres = caracteres + "#";
+                        }
+                    }
+
+                    p.innerText = caracteres;
+                    body.appendChild(p);
+                }
+            }
+        })
+        buttonrefresh.addEventListener('click', () => {
+            location.reload();
+        }
+        )
+
+
+    </script>
+</body>
+
+</html>

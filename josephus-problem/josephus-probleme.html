@@ -51,12 +51,14 @@
                     console.log(cerclePrisonnier);
 
                 }
-                console.log(cerclePrisonnier[0])
-                cerclePrisonnier.shift()
+                pvict=document.createElement("p");
+                pvict.innerText= `Le prisonnier n° ${cerclePrisonnier[0]} est mort `;
+                body.appendChild(pvict);
+                cerclePrisonnier.shift();
                 console.log(cerclePrisonnier);
                
 
-                josephus(cerclePrisonnier, kill)
+                josephus(cerclePrisonnier, kill);
 
             }
             return cerclePrisonnier;
